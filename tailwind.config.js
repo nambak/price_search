@@ -2,16 +2,15 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     purge: [
+        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
-        './resources/**/*.blade.php',
-        './resources/**/*.js',
-        './resources/**/*.vue',
+        './resources/views/**/*.blade.php',
     ],
 
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: [ '"Nanum Gothic"'],
             },
         },
     },
@@ -22,5 +21,5 @@ module.exports = {
         },
     },
 
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+    plugins: [require('@tailwindcss/forms')],
 };

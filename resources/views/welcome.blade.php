@@ -6,9 +6,6 @@
 
         <title>패션 쇼핑몰 가격 비교 검색</title>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
@@ -18,7 +15,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-200">
         <div class="container mx-auto">
             <div class="flex justify-center">
                 <h1 class="text-5xl mt-48 mb-24 mx-auto">패션 쇼핑몰 가격 비교 검색</h1>
