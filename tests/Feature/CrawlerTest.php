@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Crawler\MusinsaCrawler;
+use App\Crawler\StyleShareCrawler;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,7 +14,16 @@ class CrawlerTest extends TestCase
     public function is_working_musinsa_crawler()
     {
         $crawler = new MusinsaCrawler();
-        $results = $crawler->search('나이키 에어 테일윈드')->get();
+        $results = $crawler->search('나이키 에어 테일윈드');
+
+        $this->assertTrue(count($results) > 0);
+    }
+
+    /** @test */
+    public function is_working_style_share_crawler()
+    {
+        $crawler = new StyleShareCrawler();
+        $results = $crawler->search('나이키 에어 테일윈드');
 
         $this->assertTrue(count($results) > 0);
     }

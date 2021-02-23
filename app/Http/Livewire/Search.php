@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Crawler\MusinsaCrawler;
+use App\Crawler\StyleShareCrawler;
 use Livewire\Component;
 
 class Search extends Component
@@ -23,6 +24,7 @@ class Search extends Component
     {
         $this->validate();
 
-        $this->result = (new MusinsaCrawler())->search($this->keyword)->get();
+        $this->result['무신사'] = (new MusinsaCrawler())->search($this->keyword);
+        $this->result['스타일쉐어'] = (new StyleShareCrawler())->search($this->keyword);
     }
 }

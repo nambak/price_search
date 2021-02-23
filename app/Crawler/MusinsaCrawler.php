@@ -10,7 +10,6 @@ class MusinsaCrawler
     private $uri;
     private $client;
     private $response;
-    private $results;
 
     public function __construct()
     {
@@ -22,7 +21,7 @@ class MusinsaCrawler
      * @param string $title
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function search(string $title): MusinsaCrawler
+    public function search(string $title): array
     {
         $response = $this->client->request('GET', $this->uri, [
             'headers' => [
@@ -35,23 +34,15 @@ class MusinsaCrawler
         ]);
 
         $this->response = $response->getBody();
-        $this->parseResults();
 
-        return $this;
-    }
-
-    /**
-     * @return array
-     */
-    public function get(): array
-    {
-        return $this->results;
+        return $this->parseResults();
     }
 
     private function parseResults()
     {
         $dom = HtmlDomParser::str_get_html($this->response);
         $searchResult = $dom->find('ul[id=searchList]');
+        $results = [];
 
         if (isset($searchResult[0])) {
             $counts = count($searchResult[0]->children());
@@ -63,15 +54,17 @@ class MusinsaCrawler
                 $priceText = str_replace('원', '', $priceText);
                 $priceText = str_replace(',', '', $priceText);
                 $goodsLink = $element->find('a[name=goods_link]')[0];
+                $brand = $element->find('p[class=item_title]')[0]->children(0)->innertext;
 
-                $this->results[] = [
-                    'title' => $goodsLink->title,
+                $results[] = [
+                    'title' => $brand . ' ' . $goodsLink->title,
                     'image' => $element->find('div[class=list_img]')[0]->find('img')[0]->attr['data-original'],
                     'price' => (int)$priceText,
-                    'brand' => $element->find('p[class=item_title]')[0]->children(0)->innertext,
                     'link' => $goodsLink->href,
                 ];
             }
         }
+
+        return $results;
     }
 }
