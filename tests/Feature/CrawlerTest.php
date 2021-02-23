@@ -12,9 +12,10 @@ class CrawlerTest extends TestCase
     /** @test */
     public function is_working_musinsa_crawler()
     {
-        $results = MusinsaCrawler::search('나이키 테일윈드');
+        $crawler = new MusinsaCrawler();
+        $results = $crawler->search('나이키 에어 테일윈드')->get();
 
-        $this->assertTrue(! ! $results);
+        $this->assertTrue(count($results) > 0);
     }
 
 }

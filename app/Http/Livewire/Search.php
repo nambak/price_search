@@ -23,6 +23,6 @@ class Search extends Component
     {
         $this->validate();
 
-        $this->result = MusinsaCrawler::search($this->keyword);
+        $this->result = (new MusinsaCrawler())->search($this->keyword)->get();
     }
 }
