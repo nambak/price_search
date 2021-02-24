@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Crawler\BrandiCrawler;
 use App\Crawler\MusinsaCrawler;
 use App\Crawler\StyleShareCrawler;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -28,4 +29,12 @@ class CrawlerTest extends TestCase
         $this->assertTrue(count($results) > 0);
     }
 
+    /** @test */
+    public function is_working_brandi_crawler()
+    {
+        $crawler = new BrandiCrawler();
+        $results = $crawler->search('나이키 에어 테일윈드');
+
+        $this->assertTrue(count($results) > 0);
+    }
 }
