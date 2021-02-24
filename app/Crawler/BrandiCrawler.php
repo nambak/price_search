@@ -22,7 +22,7 @@ class BrandiCrawler extends AbstractCrawler
     {
         $title =  str_replace('/', ' ', $title);
 
-        $this->response = $this->client->request('GET', $this->uri . $title, [
+        $response = $this->client->request('GET', $this->uri . $title, [
             'headers' => [
                 'authorization' => $this->authorization,
                 'sid'           => $this->sid,
@@ -35,7 +35,7 @@ class BrandiCrawler extends AbstractCrawler
             ],
         ]);
 
-        $this->response = json_decode($this->response->getBody());
+        $this->response = json_decode($response->getBody());
 
         return $this->parseResults();
     }
