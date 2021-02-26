@@ -1,7 +1,7 @@
 <div>
     <form wire:submit.prevent="submit" class="flex justify-center mb-10">
-        <input type="text" wire:model="keyword" class="rounded w-3/6 mr-2" placeholder="검색할 상품명을 입력해 주세요.">
-        <button type="submit" class="rounded px-6 bg-green-500 text-white">검색</button>
+        <input type="text" wire:model="keyword" class="rounded w-3/6 mr-2 flex-grow sm:flex-none" placeholder="검색할 상품명을 입력해 주세요.">
+        <button type="submit" class="rounded px-6 bg-green-500 text-white flex-none">검색</button>
     </form>
     @if ($result)
         @foreach($result as $site => $items)

@@ -8,6 +8,9 @@ module.exports = {
     ],
 
     theme: {
+        screens: {
+            ...defaultTheme.screens,
+        },
         extend: {
             fontFamily: {
                 sans: [ '"Nanum Gothic"'],
