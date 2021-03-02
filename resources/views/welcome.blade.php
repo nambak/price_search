@@ -6,12 +6,12 @@
 
         <title>패션 쇼핑몰 가격 비교 검색</title>
 
-        <script data-ad-client="ca-pub-3760455502657641" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
         <!-- Styles -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         <!-- Scripts -->
+        <script data-ad-client="ca-pub-3760455502657641" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
 
         @livewireStyles
@@ -25,7 +25,7 @@
             <livewire:search />
             <div class="flex justify-center">
                 <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                    Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
+                    Contact: <a href="mailto:nambak80@gmail.com">nambak80@gmail.com</a>
                 </div>
             </div>
         </div>

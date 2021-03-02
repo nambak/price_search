@@ -13,7 +13,7 @@ module.exports = {
         },
         extend: {
             fontFamily: {
-                sans: [ '"Nanum Gothic"'],
+                sans: [ '"Noto Sans KR"'],
             },
         },
     },
