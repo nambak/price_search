@@ -6,6 +6,8 @@
 
         <title>패션 쇼핑몰 가격 비교 검색</title>
 
+        <script data-ad-client="ca-pub-3760455502657641" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
