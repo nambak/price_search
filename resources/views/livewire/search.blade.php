@@ -8,10 +8,10 @@
         <ul class="flex flex-col justify-center">
             @foreach ($result as $item)
                 <li>
-                    <div class="mb-3 shadow bg-white rounded p-3">
+                    <div class="mb-3 shadow bg-white rounded p-1">
                         <a href="{{ $item['link'] }}" target="_blank">
                             <img src="{{ $item['image'] }}"
-                                 class="sm:h-24 w-1/4 sm:w-24 mr-1 sm:mr-3 inline-block align-middle rounded-l">
+                                 class="sm:h-24 w-1/4 sm:w-24 ml-1 mr-1 sm:mr-3 inline-block align-middle rounded">
                             <div class="inline-block align-middle w-3/5">
                                 <div
                                     class="rounded p-1 text-white bg-black text-xs sm:text-sm inline-block mb-1">{{ $item['site'] }}</div>
