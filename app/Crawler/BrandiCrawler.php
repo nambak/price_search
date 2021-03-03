@@ -20,7 +20,7 @@ class BrandiCrawler extends AbstractCrawler
 
     public function search(string $title): array
     {
-        $title =  str_replace('/', ' ', $title);
+        $title = str_replace('/', ' ', $title);
 
         $response = $this->client->request('GET', $this->uri . $title, [
             'headers' => [
@@ -44,10 +44,11 @@ class BrandiCrawler extends AbstractCrawler
     {
         return array_map(function ($item) {
             return [
+                'site'  => '브랜디',
                 'title' => $item->name,
                 'image' => $item->image_thumbnail_url,
                 'price' => $item->sale_price,
-                'link' => 'https://www.brandi.co.kr/products/' . $item->id,
+                'link'  => 'https://www.brandi.co.kr/products/' . $item->id,
             ];
         }, $this->response->data);
     }

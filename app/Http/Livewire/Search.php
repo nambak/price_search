@@ -25,10 +25,14 @@ class Search extends Component
     public function submit()
     {
         $this->validate();
+        $result = collect([]);
 
-        $this->result['무신사'] = (new MusinsaCrawler())->search($this->keyword);
-        $this->result['스타일쉐어'] = (new StyleShareCrawler())->search($this->keyword);
-        $this->result['브랜디'] = (new BrandiCrawler())->search($this->keyword);
-        $this->result['서울스토어'] = (new SeoulStoreCrawler())->search($this->keyword);
+        $result = $result->merge((new MusinsaCrawler())->search($this->keyword));
+        $result = $result->merge((new StyleShareCrawler())->search($this->keyword));
+        $result = $result->merge((new BrandiCrawler())->search($this->keyword));
+        $result = $result->merge((new SeoulStoreCrawler())->search($this->keyword));
+
+        $sorted = $result->sortBy('price');
+        $this->result = $sorted->values()->all();
     }
 }

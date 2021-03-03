@@ -43,7 +43,7 @@ class CrawlerTest extends TestCase
     public function is_working_seoul_store_crawler()
     {
         $crawler = new SeoulStoreCrawler();
-        $results = $crawler->search('나이키 에어 테일윈드');
+        $results = $crawler->search('나이키 에어 테일윈드 79');
 
         $this->assertTrue(count($results) > 0);
     }

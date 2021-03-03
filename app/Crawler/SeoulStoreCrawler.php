@@ -54,10 +54,11 @@ class SeoulStoreCrawler extends AbstractCrawler
     {
         return array_map(function ($item) {
             return [
+                'site'  => '서울스토어',
                 'title' => $item->descriptions->name,
                 'image' => $item->images->list,
-                'price' => $item->discountPrice,
-                'link' => "https://www.seoulstore.com/products/$item->siteProductId/detail",
+                'price' => $item->discountPrice ?: $item->consumerPrice,
+                'link'  => "https://www.seoulstore.com/products/$item->siteProductId/detail",
             ];
         }, $this->response->items);
     }

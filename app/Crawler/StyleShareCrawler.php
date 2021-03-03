@@ -6,8 +6,8 @@ use GuzzleHttp\Client;
 
 class StyleShareCrawler
 {
-    private $uri;
-    private $client;
+    private   $uri;
+    private   $client;
     protected $response;
 
     public function __construct()
@@ -34,10 +34,11 @@ class StyleShareCrawler
     {
         return array_map(function ($item) {
             return [
+                'site'  => '스타일쉐어',
                 'title' => $item->name,
                 'image' => 'https://usercontents-c.styleshare.io/images/' . $item->picture->id . '/560x-',
                 'price' => $item->price,
-                'link' => 'https://www.styleshare.kr/goods/' . $item->id,
+                'link'  => 'https://www.styleshare.kr/goods/' . $item->id,
             ];
         }, $this->response->data);
     }

@@ -57,10 +57,11 @@ class MusinsaCrawler
                 $brand = $element->find('p[class=item_title]')[0]->children(0)->innertext;
 
                 $results[] = [
+                    'site'  => '무신사',
                     'title' => $brand . ' ' . $goodsLink->title,
                     'image' => $element->find('div[class=list_img]')[0]->find('img')[0]->attr['data-original'],
                     'price' => (int)$priceText,
-                    'link' => $goodsLink->href,
+                    'link'  => $goodsLink->href,
                 ];
             }
         }
