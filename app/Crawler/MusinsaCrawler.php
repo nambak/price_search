@@ -5,16 +5,13 @@ namespace App\Crawler;
 use GuzzleHttp\Client;
 use KubAT\PhpSimple\HtmlDomParser;
 
-class MusinsaCrawler
+class MusinsaCrawler extends AbstractCrawler
 {
-    private $uri;
-    private $client;
-    private $response;
-
     public function __construct()
     {
+        parent::__construct();
+
         $this->uri = 'https://search.musinsa.com/search/musinsa/integration';
-        $this->client = new Client();
     }
 
     /**
@@ -38,7 +35,7 @@ class MusinsaCrawler
         return $this->parseResults();
     }
 
-    private function parseResults()
+    protected function parseResults(): array
     {
         $dom = HtmlDomParser::str_get_html($this->response);
         $searchResult = $dom->find('ul[id=searchList]');

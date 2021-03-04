@@ -17,5 +17,5 @@ abstract class AbstractCrawler
     }
 
     public abstract function search(string $title): array;
-    public abstract function parseResults(): array;
+    protected abstract function parseResults(): array;
 }

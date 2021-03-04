@@ -40,7 +40,7 @@ class BrandiCrawler extends AbstractCrawler
         return $this->parseResults();
     }
 
-    public function parseResults(): array
+    protected function parseResults(): array
     {
         return array_map(function ($item) {
             return [

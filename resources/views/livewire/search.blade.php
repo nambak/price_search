@@ -8,13 +8,12 @@
         <ul class="flex flex-col justify-center">
             @foreach ($result as $item)
                 <li>
-                    <div class="mb-3 shadow bg-white rounded p-1">
+                    <div class="mb-3 shadow bg-white rounded p-2">
                         <a href="{{ $item['link'] }}" target="_blank">
                             <img src="{{ $item['image'] }}"
                                  class="sm:h-24 w-1/4 sm:w-24 ml-1 mr-1 sm:mr-3 inline-block align-middle rounded">
                             <div class="inline-block align-middle w-3/5">
-                                <div
-                                    class="rounded p-1 text-white bg-black text-xs sm:text-sm inline-block mb-1">{{ $item['site'] }}</div>
+                                <div class="rounded p-1 text-white bg-black text-xs sm:text-sm inline-block mb-1">{{ $item['site'] }}</div>
                                 <p class="text-sm sm:text-base font-normal">{{ $item['title'] }}</p>
                                 <span class="font-bold text-xl">&#8361; {{ number_format($item['price']) }}</span>
                             </div>

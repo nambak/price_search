@@ -2,10 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Crawler\BrandiCrawler;
-use App\Crawler\MusinsaCrawler;
-use App\Crawler\SeoulStoreCrawler;
-use App\Crawler\StyleShareCrawler;
+use App\Crawler\Crawler;
 use Livewire\Component;
 
 class Search extends Component
@@ -25,14 +22,8 @@ class Search extends Component
     public function submit()
     {
         $this->validate();
-        $result = collect([]);
 
-        $result = $result->merge((new MusinsaCrawler())->search($this->keyword));
-        $result = $result->merge((new StyleShareCrawler())->search($this->keyword));
-        $result = $result->merge((new BrandiCrawler())->search($this->keyword));
-        $result = $result->merge((new SeoulStoreCrawler())->search($this->keyword));
-
-        $sorted = $result->sortBy('price');
-        $this->result = $sorted->values()->all();
+        $crawler = new Crawler();
+        $this->result = $crawler->search($this->keyword);
     }
 }

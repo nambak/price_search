@@ -4,16 +4,13 @@ namespace App\Crawler;
 
 use GuzzleHttp\Client;
 
-class StyleShareCrawler
+class StyleShareCrawler extends AbstractCrawler
 {
-    private   $uri;
-    private   $client;
-    protected $response;
-
     public function __construct()
     {
+        parent::__construct();
+
         $this->uri = 'https://search-api.styleshare.kr/rest/v3/goods';
-        $this->client = new Client();
     }
 
     public function search(string $title): array
@@ -30,7 +27,7 @@ class StyleShareCrawler
         return $this->parseResults();
     }
 
-    private function parseResults()
+    protected function parseResults(): array
     {
         return array_map(function ($item) {
             return [
