@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Crawler\BrandiCrawler;
-use App\Crawler\MusinsaCrawler;
-use App\Crawler\SeoulStoreCrawler;
-use App\Crawler\StyleShareCrawler;
+use App\Crawler\Crawler;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -13,16 +10,11 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $request->validate([
-            'keyword' => 'required|string'
+            'keyword' => 'required|string',
         ]);
 
-        $result = [];
+        $crawler = new Crawler();
 
-        $result['무신사'] = (new MusinsaCrawler())->search($request->keyword);
-        $result['스타일쉐어'] = (new StyleShareCrawler())->search($request->keyword);
-        $result['브랜디'] = (new BrandiCrawler())->search($request->keyword);
-        $result['서울스토어'] = (new SeoulStoreCrawler())->search($request->keyword);
-
-        return $result;
+        return $crawler->search($request->keyword);
     }
 }
