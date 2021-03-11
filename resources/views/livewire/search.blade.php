@@ -16,6 +16,11 @@
                                 <div class="rounded p-1 text-white bg-black text-xs sm:text-sm inline-block mb-1">{{ $item['site'] }}</div>
                                 <p class="text-sm sm:text-base font-normal">{{ $item['title'] }}</p>
                                 <span class="font-bold text-xl">&#8361; {{ number_format($item['price']) }}</span>
+                                @if (isset($item['couponPrice']))
+                                    <span class="text-red-500 text-xs sm:text-sm">
+                                        쿠폰가 &#8361; {{ number_format($item['couponPrice']) }}
+                                    </span>
+                                @endif
                             </div>
                         </a>
                     </div>

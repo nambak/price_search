@@ -25,7 +25,9 @@ class CrawlerTest extends TestCase
     public function is_working_style_share_crawler()
     {
         $crawler = new StyleShareCrawler();
-        $results = $crawler->search('나이키 에어 테일윈드');
+        $results = $crawler->search('나이키 에어 테일윈드 79');
+
+        dump($results);
 
         $this->assertTrue(count($results) > 0);
     }
