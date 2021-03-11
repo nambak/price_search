@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>패션 쇼핑몰 가격 비교 검색</title>
+        <meta name="description" content="국내 유명 패션 온라인 쇼핑몰의 상품을 한곳에서 검색하고 가격비교 까지">
 
         <!-- Styles -->
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
