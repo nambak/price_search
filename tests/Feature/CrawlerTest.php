@@ -17,7 +17,7 @@ class CrawlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->keyword = '나이키 에어 테일윈드 79';
+        $this->keyword = '나이키 에어테일윈드 79';
     }
 
     /** @test */
@@ -64,7 +64,6 @@ class CrawlerTest extends TestCase
         $crawler = new Store29cmCrawler();
         $results = $crawler->search($this->keyword);
 
-        $this->assertNotEmpty($results);
-
+         $this->assertNotEmpty($results);
     }
 }

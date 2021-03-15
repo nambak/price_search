@@ -4,6 +4,8 @@
 namespace App\Crawler;
 
 
+use function PHPUnit\Framework\isNull;
+
 class Store29cmCrawler extends AbstractCrawler
 {
     public function __construct()
@@ -30,6 +32,10 @@ class Store29cmCrawler extends AbstractCrawler
 
     protected function parseResults(): array
     {
+        if (isNull($this->response->data)) {
+            return [];
+        }
+
         return array_map(function ($item) {
             return [
                 'site' => '29CM',
