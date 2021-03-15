@@ -19,6 +19,7 @@ class Crawler
         $this->brandi = new BrandiCrawler();
         $this->seoulStore = new SeoulStoreCrawler();
         $this->styleShare = new StyleShareCrawler();
+        $this->store29cm = new Store29cmCrawler();
     }
 
     public function search($keyword)
@@ -27,6 +28,7 @@ class Crawler
         $this->result = $this->result->merge($this->brandi->search($keyword));
         $this->result = $this->result->merge($this->seoulStore->search($keyword));
         $this->result = $this->result->merge($this->styleShare->search($keyword));
+        $this->result = $this->result->merge($this->store29cm->search($keyword));
 
         $sorted = $this->result->sortBy('price');
 
