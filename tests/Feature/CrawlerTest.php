@@ -3,12 +3,11 @@
 namespace Tests\Feature;
 
 use App\Crawler\BrandiCrawler;
+use App\Crawler\BrichCrawler;
 use App\Crawler\MusinsaCrawler;
 use App\Crawler\SeoulStoreCrawler;
-use App\Crawler\StyleShareCrawler;
 use App\Crawler\Store29cmCrawler;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Crawler\StyleShareCrawler;
 use Tests\TestCase;
 
 class CrawlerTest extends TestCase
@@ -17,7 +16,7 @@ class CrawlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->keyword = '나이키 에어테일윈드 79';
+        $this->keyword = '나이키 에어 테일윈드 79';
     }
 
     /** @test */
@@ -64,6 +63,18 @@ class CrawlerTest extends TestCase
         $crawler = new Store29cmCrawler();
         $results = $crawler->search($this->keyword);
 
-         $this->assertNotEmpty($results);
+        $this->assertNotEmpty($results);
     }
+
+    /** @test */
+    public function is_working_brich_crawler()
+    {
+        $crawler = new BrichCrawler();
+        $results = $crawler->search($this->keyword);
+
+        dd($results);
+
+        $this->assertNotEmpty($results);
+    }
+
 }
