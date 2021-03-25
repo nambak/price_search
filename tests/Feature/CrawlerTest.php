@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Crawler\BrandiCrawler;
 use App\Crawler\BrichCrawler;
 use App\Crawler\MusinsaCrawler;
+use App\Crawler\MusinsaRankingKeywordCrawler;
 use App\Crawler\SeoulStoreCrawler;
 use App\Crawler\Store29cmCrawler;
 use App\Crawler\StyleShareCrawler;
@@ -72,9 +73,18 @@ class CrawlerTest extends TestCase
         $crawler = new BrichCrawler();
         $results = $crawler->search($this->keyword);
 
-        dd($results);
-
         $this->assertNotEmpty($results);
     }
+
+    /** @test */
+    public function is_working_musinsa_keyword_ranking_crawler()
+    {
+        $crawler = new MusinsaRankingKeywordCrawler();
+
+        $results = $crawler->getKeyword();
+
+        $this->assertIsString($results);
+    }
+
 
 }

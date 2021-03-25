@@ -25,12 +25,12 @@ class Crawler
 
     public function search($keyword)
     {
-        $this->result = $this->result->merge($this->musinsa->search($keyword));
-        $this->result = $this->result->merge($this->brandi->search($keyword));
-        $this->result = $this->result->merge($this->seoulStore->search($keyword));
-        $this->result = $this->result->merge($this->styleShare->search($keyword));
-        $this->result = $this->result->merge($this->store29cm->search($keyword));
-        $this->result = $this->result->merge($this->brich->search($keyword));
+        $this->result = $this->result->concat($this->musinsa->search($keyword));
+        $this->result = $this->result->concat($this->brandi->search($keyword));
+        $this->result = $this->result->concat($this->seoulStore->search($keyword));
+        $this->result = $this->result->concat($this->styleShare->search($keyword));
+        $this->result = $this->result->concat($this->store29cm->search($keyword));
+        $this->result = $this->result->concat($this->brich->search($keyword));
 
         $sorted = $this->result->sortBy('price');
 

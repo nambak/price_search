@@ -2,7 +2,6 @@
 
 namespace App\Crawler;
 
-use GuzzleHttp\Client;
 use KubAT\PhpSimple\HtmlDomParser;
 
 class MusinsaCrawler extends AbstractCrawler
