@@ -10,6 +10,7 @@ class Search extends Component
 {
     public $keyword;
     public $result;
+    protected $queryString = ['keyword'];
 
     protected $rules = [
         'keyword' => 'required|string',
@@ -17,12 +18,11 @@ class Search extends Component
 
     public function render()
     {
-        if (! $this->keyword) {
-            $keywordCrawler = new MusinsaRankingKeywordCrawler();
-            $this->keyword = $keywordCrawler->getKeyword();
+        if (is_null($this->keyword)) {
+            $crawler = new MusinsaRankingKeywordCrawler();
+            $this->keyword = $crawler->getKeyword();
 
-            $crawler = new Crawler();
-            $this->result = $crawler->search($this->keyword);
+            $this->submit();
         }
 
         return view('livewire.search');
@@ -33,6 +33,7 @@ class Search extends Component
         $this->validate();
 
         $crawler = new Crawler();
+
         $this->result = $crawler->search($this->keyword);
     }
 }
