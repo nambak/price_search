@@ -15,6 +15,16 @@
         <script data-ad-client="ca-pub-3760455502657641" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script src="{{ mix('js/app.js') }}" defer></script>
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-6QC434GZFB"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-6QC434GZFB');
+        </script>
+
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
