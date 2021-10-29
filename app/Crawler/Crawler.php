@@ -20,7 +20,6 @@ class Crawler
         $this->seoulStore = new SeoulStoreCrawler();
         $this->styleShare = new StyleShareCrawler();
         $this->store29cm = new Store29cmCrawler();
-        $this->brich = new BrichCrawler();
     }
 
     public function search($keyword)
@@ -30,7 +29,6 @@ class Crawler
         $this->result = $this->result->concat($this->seoulStore->search($keyword));
         $this->result = $this->result->concat($this->styleShare->search($keyword));
         $this->result = $this->result->concat($this->store29cm->search($keyword));
-        $this->result = $this->result->concat($this->brich->search($keyword));
 
         $sorted = $this->result->sortBy('price');
 
