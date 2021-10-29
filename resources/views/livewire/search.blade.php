@@ -25,7 +25,8 @@
                             <img src="{{ $item['image'] }}"
                                  class="sm:h-24 w-1/4 sm:w-24 ml-1 mr-1 sm:mr-3 inline-block align-middle rounded">
                             <div class="inline-block align-middle w-3/5">
-                                <div class="rounded p-1 text-white bg-black text-xs sm:text-sm inline-block mb-1">{{ $item['site'] }}</div>
+                                <div class="rounded p-1 text-xs sm:text-sm inline-block mb-1"
+                                     style="border: 1px solid #000;">{{ $item['site'] }}</div>
                                 <p class="text-sm sm:text-base font-normal">{{ $item['title'] }}</p>
                                 <span class="font-bold text-xl">&#8361; {{ number_format($item['price']) }}</span>
                                 @if (isset($item['couponPrice']))
