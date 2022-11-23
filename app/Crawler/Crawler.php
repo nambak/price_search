@@ -9,7 +9,6 @@ class Crawler
     private $musinsa;
     private $brandi;
     private $seoulStore;
-    private $styleShare;
     private $result;
 
     public function __construct()
@@ -18,7 +17,6 @@ class Crawler
         $this->musinsa = new MusinsaCrawler();
         $this->brandi = new BrandiCrawler();
         $this->seoulStore = new SeoulStoreCrawler();
-        $this->styleShare = new StyleShareCrawler();
         $this->store29cm = new Store29cmCrawler();
     }
 
@@ -27,7 +25,6 @@ class Crawler
         $this->result = $this->result->concat($this->musinsa->search($keyword));
         $this->result = $this->result->concat($this->brandi->search($keyword));
         $this->result = $this->result->concat($this->seoulStore->search($keyword));
-        $this->result = $this->result->concat($this->styleShare->search($keyword));
         $this->result = $this->result->concat($this->store29cm->search($keyword));
 
         $sorted = $this->result->sortBy('price');
