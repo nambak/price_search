@@ -12,7 +12,7 @@ class Store29cmCrawler extends AbstractCrawler
     {
         parent::__construct();
 
-        $this->uri = 'https://apihub.29cm.co.kr/api/v2/nsearch/product/';
+        $this->uri = 'https://search-api.29cm.co.kr/api/v4/products?keyword=';
     }
 
     public function search(string $title): array
@@ -32,17 +32,17 @@ class Store29cmCrawler extends AbstractCrawler
 
     protected function parseResults(): array
     {
-        if (isNull($this->response->data)) {
+        if (is_null($this->response->data)) {
             return [];
         }
 
         return array_map(function ($item) {
             return [
                 'site' => '29CM',
-                'title' => $item->item_name,
-                'image' => 'https://img.29cm.co.kr' . $item->image_url . '?width=400',
-                'price' => $item->last_sale_price,
-                'link' => 'https://www.29cm.co.kr/product/' . $item->item_no,
+                'title' => $item->itemName,
+                'image' => 'https://img.29cm.co.kr' . $item->imageUrl . '?width=400',
+                'price' => $item->lastSalePrice,
+                'link' => 'https://www.29cm.co.kr/product/' . $item->itemNo,
             ];
         }, $this->response->data);
     }

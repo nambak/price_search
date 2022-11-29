@@ -8,7 +8,6 @@ use App\Crawler\MusinsaCrawler;
 use App\Crawler\MusinsaRankingKeywordCrawler;
 use App\Crawler\SeoulStoreCrawler;
 use App\Crawler\Store29cmCrawler;
-use App\Crawler\StyleShareCrawler;
 use Tests\TestCase;
 
 class CrawlerTest extends TestCase
@@ -25,17 +24,6 @@ class CrawlerTest extends TestCase
     {
         $crawler = new MusinsaCrawler();
         $results = $crawler->search($this->keyword);
-
-        $this->assertTrue(count($results) > 0);
-    }
-
-    /** @test */
-    public function is_working_style_share_crawler()
-    {
-        $crawler = new StyleShareCrawler();
-        $results = $crawler->search($this->keyword);
-
-        dump($results);
 
         $this->assertTrue(count($results) > 0);
     }
@@ -63,7 +51,6 @@ class CrawlerTest extends TestCase
     {
         $crawler = new Store29cmCrawler();
         $results = $crawler->search($this->keyword);
-
         $this->assertNotEmpty($results);
     }
 
