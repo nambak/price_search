@@ -6,16 +6,11 @@ use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
-
-    public function is_work_price_search_api()
+    public function testPriceSearchApi()
     {
         $this->withoutExceptionHandling();
 
-        $response = $this->json('GET', '/api/search?keyword=나이키');
+        $response = $this->json('GET', '/api/search', ['keyword' => '나이키']);
 
         $response->assertStatus(200);
 

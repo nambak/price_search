@@ -13,12 +13,12 @@ class CrawlerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->keyword = '나이키';
-
         parent::setUp();
+
+        $this->keyword = '나이키';
     }
 
-    public function is_working_musinsa_crawler()
+    public function testWorkingMusinsaCrawler()
     {
         $crawler = new MusinsaCrawler();
         $results = $crawler->search($this->keyword);
@@ -26,7 +26,7 @@ class CrawlerTest extends TestCase
         $this->assertTrue(count($results) > 0);
     }
 
-    public function is_working_brandi_crawler()
+    public function testWorkingBrandiCrawler()
     {
         $crawler = new BrandiCrawler();
         $results = $crawler->search($this->keyword);
@@ -34,7 +34,7 @@ class CrawlerTest extends TestCase
         $this->assertTrue(count($results) > 0);
     }
 
-    public function is_working_store_29cm_crawler()
+    public function testWorkingStore29cmCrawler()
     {
         $crawler = new Store29cmCrawler();
         $results = $crawler->search($this->keyword);

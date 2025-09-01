@@ -16,3 +16,4 @@ yarn-error.log
 CLAUDE.md
 /.claude/
 /public/build/
+/.phpunit.cache/
