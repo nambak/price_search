@@ -14,6 +14,7 @@ class BrandiCrawler extends AbstractCrawler
         parent::__construct();
 
         $this->uri = 'https://capi.brandi.co.kr/v1/web/search/products/';
+
         $this->authorization = config('services.brandi.authorization');
         $this->sid = config('services.brandi.sid');
     }
@@ -21,8 +22,9 @@ class BrandiCrawler extends AbstractCrawler
     public function search(string $title): array
     {
         $title = str_replace('/', ' ', $title);
+        $encodedTitle = urlencode($title);
 
-        $response = $this->client->request('GET', $this->uri . $title, [
+        $response = $this->client->request('GET', $this->uri . $encodedTitle, [
             'headers' => [
                 'authorization' => $this->authorization,
                 'sid'           => $this->sid,

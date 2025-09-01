@@ -15,7 +15,3 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ SearchController::class, 'index' ]);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
