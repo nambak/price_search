@@ -14,8 +14,8 @@ class BrandiCrawler extends AbstractCrawler
         parent::__construct();
 
         $this->uri = 'https://capi.brandi.co.kr/v1/web/search/products/';
-        $this->authorization = '3b17176f2eb5fdffb9bafdcc3e4bc192b013813caddccd0aad20c23ed272f076_1423639497';
-        $this->sid = '16127527525881777F8E0FCC58884860';
+        $this->authorization = config('services.brandi.authorization');
+        $this->sid = config('services.brandi.sid');
     }
 
     public function search(string $title): array
