@@ -2,6 +2,8 @@
 
 namespace App\Crawler;
 
+use JsonException;
+
 class BrandiCrawler extends AbstractCrawler
 {
     private $authorization;
@@ -46,7 +48,11 @@ class BrandiCrawler extends AbstractCrawler
 
     protected function parseResults(): array
     {
-        $data = json_decode($this->response, true);
+        try {
+            $data = json_decode($this->response, true, 512, JSON_THROW_ON_ERROR);
+        } catch (JsonException $e) {
+            return [];
+        }
 
         if (!isset($data['data']['products']) || !is_array($data['data']['products'])) {
             return [];
