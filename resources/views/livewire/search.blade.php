@@ -1,7 +1,7 @@
 <div>
     <form wire:submit.prevent="submit" class="flex justify-center mb-10">
         <input type="text" wire:model.lazy="keyword"
-               class="rounded w-3/6 mr-2 flex-grow sm:flex-none"
+               class="rounded w-3/6 mr-2 flex-grow sm:flex-none bg-gray-100 px-4 py-2"
                placeholder="검색할 상품명을 입력해 주세요.">
         <button type="submit" class="rounded px-6 bg-green-500 text-white flex-none">검색</button>
     </form>

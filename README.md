@@ -74,7 +74,6 @@ app/
 │   ├── BrandiCrawler.php      # 브랜디 크롤러
 │   ├── BrichCrawler.php       # 브리치 크롤러
 │   ├── MusinsaCrawler.php     # 무신사 크롤러
-│   ├── SeoulStoreCrawler.php  # 서울스토어 크롤러
 │   └── Store29cmCrawler.php   # 29CM 크롤러
 ├── Http/
 │   ├── Controllers/
