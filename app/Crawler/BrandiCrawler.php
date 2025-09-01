@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Crawler;
-
 
 class BrandiCrawler extends AbstractCrawler
 {
@@ -37,27 +35,25 @@ class BrandiCrawler extends AbstractCrawler
             ],
         ]);
 
-        $this->response = json_decode($response->getBody(), true);
+        $this->response = (string)$response->getBody();
 
         return $this->parseResults();
     }
 
     protected function parseResults(): array
     {
-        $results = [];
-        
-        if (isset($this->response['data']['products'])) {
-            foreach ($this->response['data']['products'] as $item) {
-                $results[] = [
-                    'site'  => '브랜디',
-                    'title' => $item['name'],
-                    'image' => $item['image_thumbnail_url'] ?? $item['web_image_thumbnail_url'] ?? '',
-                    'price' => $item['sale_price'],
-                    'link'  => 'https://www.brandi.co.kr/products/' . $item['id'],
-                ];
-            }
+        $data = json_decode($this->response, true);
+
+        if (!isset($data['data']['products']) || !is_array($data['data']['products'])) {
+            return [];
         }
-        
-        return $results;
+
+        return array_map(fn(array $item): array => [
+            'site'  => '브랜디',
+            'title' => $item['name'] ?? '',
+            'image' => $item['image_thumbnail_url'] ?? $item['web_image_thumbnail_url'] ?? '',
+            'price' => isset($item['sale_price']) ? (int)$item['sale_price'] : 0,
+            'link'  => isset($item['id']) ? 'https://www.brandi.co.kr/products/' . $item['id'] : '',
+        ], $data['data']['products']);
     }
 }

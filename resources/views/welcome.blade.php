@@ -17,7 +17,7 @@
         <div class="min-h-screen bg-gray-300">
         <div class="container mx-auto p-5">
             <div class="flex justify-center">
-                <h1 class="text-2xl sm:text-5xl mt-10 sm:mt-48 mb-12 sm:mb-24 mx-auto text-center">-</h1>
+                <h1 class="text-2xl sm:text-5xl mt-10 sm:mt-48 mb-12 sm:mb-24 mx-auto text-center">패션 쇼핑몰 가격 비교 검색</h1>
             </div>
             <livewire:search>
             <div class="flex justify-center">
