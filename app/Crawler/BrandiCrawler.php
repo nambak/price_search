@@ -48,12 +48,17 @@ class BrandiCrawler extends AbstractCrawler
             return [];
         }
 
-        return array_map(fn(array $item): array => [
+        return array_map([$this, 'mapProductData'], $data['data']['products']);
+    }
+
+    protected function mapProductData(array $item): array
+    {
+        return [
             'site'  => '브랜디',
             'title' => $item['name'] ?? '',
             'image' => $item['image_thumbnail_url'] ?? $item['web_image_thumbnail_url'] ?? '',
             'price' => isset($item['sale_price']) ? (int)$item['sale_price'] : 0,
             'link'  => isset($item['id']) ? 'https://www.brandi.co.kr/products/' . $item['id'] : '',
-        ], $data['data']['products']);
+        ];
     }
 }
