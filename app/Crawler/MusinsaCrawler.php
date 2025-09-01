@@ -2,15 +2,13 @@
 
 namespace App\Crawler;
 
-use KubAT\PhpSimple\HtmlDomParser;
-
 class MusinsaCrawler extends AbstractCrawler
 {
     public function __construct()
     {
         parent::__construct();
 
-        $this->uri = 'https://search.musinsa.com/search/musinsa/integration';
+        $this->uri = 'https://api.musinsa.com/api2/dp/v1/plp/goods';
     }
 
     /**
@@ -21,11 +19,19 @@ class MusinsaCrawler extends AbstractCrawler
     {
         $response = $this->client->request('GET', $this->uri, [
             'headers' => [
-                'User-Agent' => 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13',
+                'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             ],
             'query'   => [
-                'type' => '',
-                'q'    => $title,
+                'gf' => 'A',
+                'keyword' => $title,
+                'sortCode' => 'POPULAR',
+                'isUsed' => 'false',
+                'page' => '1',
+                'size' => '60',
+                'testGroup' => '',
+                'seen' => '0',
+                'seenAds' => '',
+                'caller' => 'SEARCH',
             ],
         ]);
 
@@ -36,28 +42,17 @@ class MusinsaCrawler extends AbstractCrawler
 
     protected function parseResults(): array
     {
-        $dom = HtmlDomParser::str_get_html($this->response);
-        $searchResult = $dom->find('ul[id=searchList]');
+        $data = json_decode($this->response, true);
         $results = [];
 
-        if (isset($searchResult[0])) {
-            $counts = count($searchResult[0]->children());
-            for ($i = 0; $i < $counts; $i++) {
-                $element = $searchResult[0]->children($i);
-                $price = $element->find('p[class=price]')[0];
-                $deletedPrice = $price->children(0);
-                $priceText = trim(strip_tags(str_replace($deletedPrice, '', $price)));
-                $priceText = str_replace('원', '', $priceText);
-                $priceText = str_replace(',', '', $priceText);
-                $goodsLink = $element->find('a[name=goods_link]')[0];
-                $brand = $element->find('p[class=item_title]')[0]->children(0)->innertext;
-
+        if (isset($data['data']['list'])) {
+            foreach ($data['data']['list'] as $item) {
                 $results[] = [
                     'site'  => '무신사',
-                    'title' => $brand . ' ' . $goodsLink->title,
-                    'image' => $element->find('div[class=list_img]')[0]->find('img')[0]->attr['data-original'],
-                    'price' => (int)$priceText,
-                    'link'  => $goodsLink->href,
+                    'title' => $item['brandName'] . ' ' . $item['goodsName'],
+                    'image' => $item['thumbnail'] ?? '',
+                    'price' => (int)$item['price'],
+                    'link'  => $item['goodsLinkUrl'],
                 ];
             }
         }

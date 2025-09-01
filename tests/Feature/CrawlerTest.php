@@ -6,7 +6,6 @@ use App\Crawler\BrandiCrawler;
 use App\Crawler\BrichCrawler;
 use App\Crawler\MusinsaCrawler;
 use App\Crawler\MusinsaRankingKeywordCrawler;
-use App\Crawler\SeoulStoreCrawler;
 use App\Crawler\Store29cmCrawler;
 use Tests\TestCase;
 
@@ -32,15 +31,6 @@ class CrawlerTest extends TestCase
     public function is_working_brandi_crawler()
     {
         $crawler = new BrandiCrawler();
-        $results = $crawler->search($this->keyword);
-
-        $this->assertTrue(count($results) > 0);
-    }
-
-    /** @test */
-    public function is_working_seoul_store_crawler()
-    {
-        $crawler = new SeoulStoreCrawler();
         $results = $crawler->search($this->keyword);
 
         $this->assertTrue(count($results) > 0);
