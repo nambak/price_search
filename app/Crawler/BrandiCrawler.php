@@ -35,8 +35,12 @@ class BrandiCrawler extends AbstractCrawler
             ],
         ]);
 
-        $this->response = (string)$response->getBody();
+        if ($response->getStatusCode() !== 200) {
+            $this->response = '';
+            return [];
+        }
 
+        $this->response = (string) $response->getBody();
         return $this->parseResults();
     }
 
