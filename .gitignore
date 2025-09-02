@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 /public/storage
+/public/build
 /storage/*.key
 /vendor
 .env
@@ -15,3 +16,4 @@ yarn-error.log
 CLAUDE.md
 /.claude/
 /public/build/
+/.phpunit.cache/

@@ -30,4 +30,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'brandi' => [
+        'authorization' => env('BRANDI_AUTHORIZATION'),
+        'sid' => env('BRANDI_SID'),
+    ]
 ];
