@@ -17,11 +17,11 @@
 
 ## 🛠️ 기술 스택
 
-- **Backend**: Laravel 8 + Livewire 2.0
-- **Frontend**: TailwindCSS + Alpine.js
+- **Backend**: Laravel 12 + Livewire 3.0
+- **Frontend**: TailwindCSS 4 + Alpine.js
 - **크롤링**: GuzzleHttp + Simple HTML DOM Parser
 - **인증**: Laravel Jetstream
-- **빌드 도구**: Laravel Mix
+- **빌드 도구**: Vite
 
 ## 🚀 설치 및 실행
 
@@ -58,10 +58,8 @@ php artisan migrate
 # Laravel 개발 서버
 php artisan serve
 
-# 프론트엔드 에셋 컴파일 (별도 터미널)
+# 프론트엔드 Vite 개발 서버 (별도 터미널)
 npm run dev
-# 또는 파일 변경 감지
-npm run watch
 ```
 
 ## 📁 프로젝트 구조
@@ -86,11 +84,18 @@ app/
 ## 🧪 테스트
 
 ```bash
-# PHPUnit 테스트 실행
+# 모든 테스트 실행
 ./vendor/bin/phpunit
 
 # 또는
 php artisan test
+
+# 특정 테스트 스위트 실행
+./vendor/bin/phpunit --testsuite=Feature
+./vendor/bin/phpunit --testsuite=Unit
+
+# 특정 테스트 파일 실행
+./vendor/bin/phpunit tests/Feature/CrawlerTest.php
 ```
 
 ## 🔧 개발 명령어
@@ -111,14 +116,11 @@ php artisan key:generate
 
 ### 프론트엔드
 ```bash
-# 개발 빌드
+# 개발 빌드 (Vite 개발 서버)
 npm run dev
 
 # 프로덕션 빌드
-npm run prod
-
-# 핫 리로드
-npm run hot
+npm run build
 ```
 
 ## 🚀 배포
