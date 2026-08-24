@@ -1,0 +1,74 @@
+# Dependabot 설정
+#
+# 이 파일은 "정기 버전 업데이트(version updates)"만 담당한다.
+# 보안 권고에 대한 자동 PR("보안 업데이트")은 이 파일이 아니라 저장소 설정에서 켠다.
+#   Settings > Code security > Dependabot security updates
+version: 2
+
+updates:
+  # PHP 의존성 (composer.json / composer.lock)
+  - package-ecosystem: "composer"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "php"
+    commit-message:
+      prefix: ":arrow_up:"
+    groups:
+      # 마이너/패치는 한 PR로 묶어 알림 소음을 줄인다.
+      composer-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    ignore:
+      # 프레임워크 메이저 업그레이드는 수동 마이그레이션이 필요하므로 자동 PR에서 제외한다.
+      - dependency-name: "laravel/framework"
+        update-types: [ "version-update:semver-major" ]
+      - dependency-name: "livewire/livewire"
+        update-types: [ "version-update:semver-major" ]
+
+  # 프론트엔드 의존성 (package.json / package-lock.json)
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "javascript"
+    commit-message:
+      prefix: ":arrow_up:"
+    groups:
+      npm-minor-patch:
+        update-types:
+          - "minor"
+          - "patch"
+
+  # GitHub Actions (.github/workflows/*.yml)
+  # codeql.yml은 액션을 커밋 SHA로 고정해 두었으므로 Dependabot이 SHA 갱신을 담당한다.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Seoul"
+    open-pull-requests-limit: 3
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: ":arrow_up:"
+    groups:
+      actions-all:
+        patterns:
+          - "*"
