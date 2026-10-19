@@ -8,8 +8,8 @@
     "devDependencies": {
         "alpinejs": "^3.17.4",
         "lodash": "^4.18.1",
-        "postcss": "^8.5.14",
-        "postcss-import": "^17.0.0"
+        "postcss": "^8.5.30",
+        "postcss-import": "^17.0.1"
     },
     "dependencies": {
         "@tailwindcss/vite": "^4.3.3",
